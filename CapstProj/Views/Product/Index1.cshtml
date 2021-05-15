@@ -1,0 +1,42 @@
+﻿@model IEnumerable<CapstProj.Models.ProductModel>
+    @{
+        int c = 0;
+    }
+    <head>
+
+        <script data-require="jquery@3.1.1" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+       
+
+        <link rel="stylesheet" href="~/css/StyleSheet.css" />
+        
+    </head>
+    <table>
+        <tr style="align-content:center; align-self:center; align-items:center">
+            @foreach (var item in Model)
+            {
+
+                @if (c != 0 && c % 2 == 0)
+                {
+                @:</tr>
+                @:<tr style="align-content:center; align-self:center; align-items:center">
+
+
+                }
+                <td style="align-content:center; align-self:center; align-items:center">
+                    <div class="card">
+                        <img src="@Url.Content(item.ProductImagePath)" style="width:100%">
+                        <div class="container">
+                            <h4><b>@Html.DisplayFor(modelItem => item.P_Name)</b></h4>
+                            <h4>@Html.DisplayFor(modelItem => item.Cost) /-</h4>
+
+                           
+
+                                <input type="submit" value="BUY" class="btn btn-primary" />
+
+                        </div>
+                    </div>
+                </td>
+                c++;
+            }
+    </table>
