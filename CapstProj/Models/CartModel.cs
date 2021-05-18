@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace CapstProj.Models
 {
-    public class ProductModel
+    public class CartModel
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string ID { get; set; }
+        public string UID { get; set; }
         public string P_Name { get; set; }
-        public int? Cost { get; set; }
+        public int Cost { get; set; }
         public string Details { get; set; }
         public string ProductImagePath { get; set; }
         public string CategoryId { get; set; }
-       
-        
+        public int qty { get; set; }
     }
 }

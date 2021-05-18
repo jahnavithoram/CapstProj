@@ -14,5 +14,6 @@ namespace CapstProj.Data
         {
         }
         public DbSet<CapstProj.Models.ProductModel> ProductModel { get; set; }
+        public DbSet<CapstProj.Models.CartModel> CartModel { get; set; }
     }
 }

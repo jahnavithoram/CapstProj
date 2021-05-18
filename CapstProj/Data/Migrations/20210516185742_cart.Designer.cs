@@ -4,18 +4,20 @@ using CapstProj.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CapstProj.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210516185742_cart")]
+    partial class cart
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.15")
+                .HasAnnotation("ProductVersion", "3.1.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -28,7 +30,7 @@ namespace CapstProj.Data.Migrations
                     b.Property<string>("CategoryId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Cost")
+                    b.Property<int?>("Cost")
                         .HasColumnType("int");
 
                     b.Property<string>("Details")
@@ -39,12 +41,6 @@ namespace CapstProj.Data.Migrations
 
                     b.Property<string>("ProductImagePath")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UID")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("qty")
-                        .HasColumnType("int");
 
                     b.HasKey("ID");
 

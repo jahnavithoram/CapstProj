@@ -10,16 +10,11 @@
 
     .card:hover {
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        color:teal;
     }
 
 .container {
     padding: 0px 2px;
 }
 
-table {
-    column-span: all;
-    padding: 4px 7px 4px 4px;
-    align-content:center;
-    text-align:center;
-    align_row
-}
+

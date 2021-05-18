@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace CapstProj.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProductController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -21,14 +22,26 @@ namespace CapstProj.Controllers
         }
 
         // GET: Product
-        [Authorize(Roles ="Admin")]
+      
         public async Task<IActionResult> Index()
         {
             return View(await _context.ProductModel.ToListAsync());
         }
-        public async Task<IActionResult> Index1()
+        [AllowAnonymousAttribute]
+        public async Task<IActionResult> Index1(string id)
         {
-            return View(await _context.ProductModel.ToListAsync());
+            ViewBag.cat = null;
+            if (id== null)
+            {
+
+                return View(await _context.ProductModel.ToListAsync());
+            }
+            else
+            {
+                ViewBag.cat = id;
+
+                return View(await _context.ProductModel.ToListAsync());
+            }
         }
 
         // GET: Product/Details/5
