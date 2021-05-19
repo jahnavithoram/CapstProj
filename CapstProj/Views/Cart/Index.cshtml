@@ -5,8 +5,8 @@
     int total= 0;
 }
 <head>
-
-   <style>
+   
+    <style>
         .table {
             padding: 50rem;
             border: thin;
@@ -66,7 +66,68 @@
             <tr>
                 <td><h3>Total Cost:</h3></td>
                 <td><h3>Rs @total/-</h3></td>
-                <td><a asp-action="Create" asp-controller="Confirm" asp-route-id="">Proceed to Pay</a></td>
+                <td>
+                    <div class="container">
+                    
+                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Proceed to Pay</button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <table class="table"><tr><td><h4 class="modal-title">Payment Details</h4></td><td> <button type="button" class="close" data-dismiss="modal">&times;</button></td></tr></table>
+                                    </div> 
+                                    <div class="modal-body">
+                                        <table align="center" class="table">
+                                            <tr>
+                                                <td>Email</td>
+                                                <td><input type="text" value="@User.Identity.Name" readonly placeholder="Email" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>PhoneNo.</td>
+                                                <td><input type="number" maxlength="10" placeholder="Phone.No" required /></td>
+                                            </tr>
+                                            <tr>
+
+                                                <td>  Address: </td>
+                                                <td><input type="text" value="" required placeholder="Address" />
+                                                <td>
+
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    CardNo:
+                                                </td>
+                                                <td>
+                                                    <input type="text" value="" required placeholder="CardNo." maxlength="16" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Cvv:
+                                                </td>
+                                                <td>
+                                                    <input type="password" value="" required placeholder="cvv" maxlength="3"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a asp-action="Create" asp-controller="Confirm" asp-route-id=""><input type="submit" value="Confirm" onclick="alert('Thank you for the Purchase!'); window.alert('Please wait...')"/></a>  
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </td>
+                <td><a asp-action="pay" asp-controller="Cart" asp-route-id="">Proceed to Pay</a></td>
             </tr>
         }
     </table>

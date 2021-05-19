@@ -27,7 +27,10 @@ namespace CapstProj.Controllers
         {
             return View(await _context.CartModel.ToListAsync());
         }
-
+        public async Task<IActionResult> pay()
+        {
+            return View();
+        }
         // GET: Cart/Details/5
         public async Task<IActionResult> Details(string id)
         {
@@ -159,5 +162,6 @@ namespace CapstProj.Controllers
             }
             return RedirectToAction("Index1", "Product"); ;
         }
+      
     }
 }
