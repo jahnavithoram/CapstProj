@@ -1,0 +1,68 @@
+﻿@model IEnumerable<CapstProj.Models.ConfirmModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <h1 style="color:teal">previous order</h1>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            @if (User.IsInRole("Admin"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.UID)
+                </th>
+}
+            <th>
+                @Html.DisplayNameFor(model => model.P_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductImagePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.qty)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @if (User.Identity.Name == item.UID || User.IsInRole("Admin"))
+            {
+                <tr>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UID)
+                        </td>
+                    }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.P_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cost)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductImagePath)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.qty)
+                    </td>
+                    <td>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>}
+                    </td>
+                </tr>
+                }
+            }
+        </tbody>
+</table>

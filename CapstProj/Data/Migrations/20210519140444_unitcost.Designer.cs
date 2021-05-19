@@ -4,14 +4,16 @@ using CapstProj.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CapstProj.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210519140444_unitcost")]
+    partial class unitcost
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,32 +54,6 @@ namespace CapstProj.Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("CartModel");
-                });
-
-            modelBuilder.Entity("CapstProj.Models.ConfirmModel", b =>
-                {
-                    b.Property<string>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Cost")
-                        .HasColumnType("int");
-
-                    b.Property<string>("P_Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductImagePath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UID")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("qty")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("ConfirmModel");
                 });
 
             modelBuilder.Entity("CapstProj.Models.ProductModel", b =>

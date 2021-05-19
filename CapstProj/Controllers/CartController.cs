@@ -46,7 +46,7 @@ namespace CapstProj.Controllers
             return View(cartModel);
         }
 
-       
+
 
 
         // GET: Cart/Edit/5
@@ -58,25 +58,26 @@ namespace CapstProj.Controllers
             }
 
             var cartModel = await _context.CartModel.FindAsync(id);
-            
+
             if (cartModel == null)
             {
                 //Create();
-               return NotFound();
+                return NotFound();
             }
-            
+
             cartModel.qty += 1;
-            return await Edit(cartModel); 
+            cartModel.Cost = cartModel.qty * cartModel.unitCost;
+            return await Edit(cartModel);
         }
 
         // POST: Cart/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-       public async Task<IActionResult> Edit([Bind("ID,P_Name,Cost,Details,ProductImagePath,CategoryId,qty")] CartModel cartModel)
+        // [HttpPost]
+        // [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit([Bind("ID,P_Name,Cost,Details,ProductImagePath,CategoryId,qty")] CartModel cartModel)
         {
-          
+
 
             if (ModelState.IsValid)
             {
@@ -96,11 +97,11 @@ namespace CapstProj.Controllers
                         throw;
                     }
                 }
-              //  return RedirectToAction(nameof(Index));
+                //  return RedirectToAction(nameof(Index));
             }
-            return RedirectToAction("Index1","Product"); ;
+            return RedirectToAction("Index1", "Product"); ;
         }
-    
+
         // GET: Cart/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
@@ -116,12 +117,12 @@ namespace CapstProj.Controllers
                 return NotFound();
             }
 
-            return View(cartModel);
+            return await DeleteConfirmed(id);
         }
 
         // POST: Cart/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //  [HttpPost, ActionName("Delete")]
+        // [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var cartModel = await _context.CartModel.FindAsync(id);
@@ -139,20 +140,22 @@ namespace CapstProj.Controllers
         public async Task<IActionResult> AddtoCart([Bind("ID,UID,P_Name,Cost,Details,ProductImagePath,CategoryId,qty")] CartModel cartModel)
         {
             // CartModel tempcartModel = await _context.CartModel.FindAsync(cartModel.ID);
-            var tid = cartModel.ID ;
+            var tid = cartModel.ID;
             if (CartModelExists(tid) == true)
             {
-                return await Edit(tid); 
+                return await Edit(tid);
             }
-            else{
+            else
+            {
                 if (ModelState.IsValid)
                 {
+                    cartModel.unitCost = cartModel.Cost;
                     _context.Add(cartModel);
                     var a = cartModel;
                     await _context.SaveChangesAsync();
-                 // return RedirectToAction("Index1", "Product"); ;
+                    // return RedirectToAction("Index1", "Product"); ;
                 }
-             
+
             }
             return RedirectToAction("Index1", "Product"); ;
         }

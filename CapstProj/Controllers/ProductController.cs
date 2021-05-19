@@ -28,9 +28,20 @@ namespace CapstProj.Controllers
             return View(await _context.ProductModel.ToListAsync());
         }
         [AllowAnonymousAttribute]
-        public async Task<IActionResult> Index1(string id)
+        public async Task<IActionResult> Index1(string id,string search)
         {
             ViewBag.cat = null;
+           
+            var list = _context.ProductModel.Select(m => m.CategoryId).Distinct();
+            ViewBag.listoflists = list;
+           
+            if (search != null)
+            {
+                return View(await _context.ProductModel.Where(m => m.P_Name.StartsWith(search)).ToListAsync());
+
+
+            }
+
             if (id== null)
             {
 
@@ -40,7 +51,7 @@ namespace CapstProj.Controllers
             {
                 ViewBag.cat = id;
 
-                return View(await _context.ProductModel.ToListAsync());
+                return View(await _context.ProductModel.OrderBy(m => m.P_Name).ToListAsync());
             }
         }
 

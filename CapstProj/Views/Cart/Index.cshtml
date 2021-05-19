@@ -2,64 +2,71 @@
 
 @{
     ViewData["Title"] = "Index";
+    int total= 0;
 }
+<head>
 
-<h1>Index</h1>
+   <style>
+        .table {
+            padding: 50rem;
+            border: thin;
+            border-color: grey;
+        }
+    </style>
+</head>
+<h1>Cart Details</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.P_Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cost)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Details)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductImagePath)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CategoryId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.qty)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.P_Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Details)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductImagePath)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.qty)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+    @foreach (var item in Model)
+    {
+        @if (User.Identity.Name == item.UID || User.IsInRole("Admin"))
+        {
+            total = total + item.Cost;
+            if (total != 0)
+            {
+                <tr>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.ID"> <img src="@Url.Content(item.ProductImagePath)" alt="Sample Photo" id="Pic" width="150px" height="150px" /></a>
+                    </td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <b>@item.P_Name</b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>qty:@item.qty</b>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Rs:@item.Cost/-</b>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@item.ID"><img src="https://image.flaticon.com/icons/png/512/3385/3385590.png" width="30px" height="30px" /></a>
+                    </td>
+                </tr>
+                }
+
+            }
+        }
+        @if (total == 0)
+        {
+            <h1 style="color:teal">EMPTY CART</h1>
+        }
+        else
+        {
+            <tr>
+                <td><h3>Total Cost:</h3></td>
+                <td><h3>Rs @total/-</h3></td>
+                <td><a asp-action="Create" asp-controller="Confirm" asp-route-id="">Proceed to Pay</a></td>
+            </tr>
+        }
+    </table>

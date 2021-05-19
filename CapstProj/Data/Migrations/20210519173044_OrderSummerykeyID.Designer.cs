@@ -4,14 +4,16 @@ using CapstProj.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CapstProj.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210519173044_OrderSummerykeyID")]
+    partial class OrderSummerykeyID
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,7 +56,7 @@ namespace CapstProj.Data.Migrations
                     b.ToTable("CartModel");
                 });
 
-            modelBuilder.Entity("CapstProj.Models.ConfirmModel", b =>
+            modelBuilder.Entity("CapstProj.Models.OrderSummeryModel", b =>
                 {
                     b.Property<string>("ID")
                         .ValueGeneratedOnAdd()
@@ -77,7 +79,7 @@ namespace CapstProj.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("ConfirmModel");
+                    b.ToTable("OrderSummeryModel");
                 });
 
             modelBuilder.Entity("CapstProj.Models.ProductModel", b =>
