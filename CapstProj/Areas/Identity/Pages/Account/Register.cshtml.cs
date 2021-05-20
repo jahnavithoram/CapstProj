@@ -136,7 +136,8 @@ namespace CapstProj.Areas.Identity.Pages.Account
                 ModelState.AddModelError(string.Empty, error.Description);
             }
         }
-
+            ViewData["roles"] = _roleManager.Roles.ToList();
+            //return View(model);
             // If we got this far, something failed, redisplay form
             return Page();
         }

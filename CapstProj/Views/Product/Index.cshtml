@@ -43,15 +43,15 @@
                 @Html.DisplayFor(modelItem => item.Details)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductImagePath)
+                <img src="@Url.Content(item.ProductImagePath)" alt="Sample Photo" id="Pic" width="150px" height="150px" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CategoryId)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.ID" style="color:black">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID" style="color:blue">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID" style="color:red">Delete</a>
             </td>
         </tr>
 }

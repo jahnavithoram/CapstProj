@@ -24,8 +24,8 @@ namespace CapstProj.Controllers
             return View();
         }
 
-        [Authorize(Roles ="Admin")]
-        public IActionResult Privacy()
+      
+        public IActionResult About()
         {
             return View();
         }

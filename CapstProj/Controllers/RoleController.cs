@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using CapstProj.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,13 @@ namespace CapstProj.Controllers
     public class RoleController : Controller
     {
         RoleManager<IdentityRole> roleManager;
-        public RoleController(RoleManager<IdentityRole> roleManager)
+        //   UserManager<IdentityUser> userManager;
+        private readonly ApplicationDbContext _context;
+
+        public RoleController(RoleManager<IdentityRole> roleManager, ApplicationDbContext context)
         {
             this.roleManager = roleManager;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -32,5 +37,13 @@ namespace CapstProj.Controllers
             await roleManager.CreateAsync(role);
             return RedirectToAction("Index");
         }
+        public IActionResult Users()
+
+        { 
+          //  var context = new ApplicationDbContext();
+            //_context = context;
+            var allUsers = _context.Users.ToList();
+            return View(allUsers); }
+        
     }
 }

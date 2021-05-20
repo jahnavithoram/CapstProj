@@ -4,14 +4,14 @@
     @{
         int c = 0;
     }
-    <head>
+<head>
 
-        <script data-require="jquery@3.1.1" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-        <link rel="stylesheet" href="~/css/StyleSheet.css" />
-    </head>
+    <script data-require="jquery@3.1.1" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="~/css/StyleSheet.css" />
+</head>
     <div>
-        <table align="right" style="background-color:lightgrey; border-color:dimgrey">
+        <table align="right" style="background-color:whitesmoke">
             <tr><th>Categories</th></tr>
 
             <tr><td>  <a class="nav-link text-dark" asp-action="Index1" asp-route-id=@null>All</a> </td></tr>
@@ -27,9 +27,9 @@
                 <td>
                     @using (Html.BeginForm("Index1", "Product", FormMethod.Get))
                     {
-                        <p>
-                            @Html.TextBox("search") <input type="submit" value="Search" />
-                        </p>}
+                    <p>
+                        @Html.TextBox("search") <button  type="submit" class="w3-button  w3-round-xlarge" style="background-color:gray">Search</button>
+                    </p>}
                 </td>
             </tr>
 
@@ -57,8 +57,8 @@
                                     @using (Html.BeginForm("AddtoCart", "Cart", new { UID = User.Identity.Name, ID = @item.ID + User.Identity.Name, P_Name = @item.P_Name, Cost = @item.Cost, Details = @item.Details, ProductImagePath = @item.ProductImagePath, CategoryId = @item.CategoryId, qty = 1 }, FormMethod.Post))
                                     {
 
-
-                                        <input type="submit" value="BUY" class="btn btn-primary" />
+                                        <button type="submit" class="w3-button  w3-round-xlarge" style="background-color:teal">Add to cart</button>
+                                        
 
 
                                     }

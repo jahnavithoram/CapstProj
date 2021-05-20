@@ -24,7 +24,7 @@ namespace CapstProj.Controllers
         // GET: Product
       
         public async Task<IActionResult> Index()
-        {
+        {   
             return View(await _context.ProductModel.ToListAsync());
         }
         [AllowAnonymousAttribute]

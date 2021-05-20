@@ -51,7 +51,7 @@
                         @Html.DisplayFor(modelItem => item.Cost)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ProductImagePath)
+                        <img src="@Url.Content(item.ProductImagePath)" alt="Sample Photo" id="Pic" width="150px" height="150px" />
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.qty)

@@ -32,32 +32,34 @@
                     <button type="submit" class="w3-button  w3-round-xlarge" style="background-color:darkslategrey">Logout</button>
                 </form>
             </li>
-            <table align="right">
-            <li class="nav-item">
-
-                <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">  <img class="navbar-cart" align="right" src="https://cdn.iconscout.com/icon/free/png-256/shopping-cart-1403820-1187982.png" /></a>
-
-            </li>
-            </table>
-        }
-        else
-        {
-
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-            </li>
-        }
-        @if (SignInManager.IsSignedIn(User))
-        {
-            if (User.IsInRole("Admin"))
+            @if (User.IsInRole("User"))
             {
                 <li class="nav-item">
-                    <a class="nav-link text-dark">hiiiiii</a>
-                </li>
-            }
 
-        }
-    </ul>
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Confirm" asp-action="Index">My Orders</a></li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">  <img class="navbar-cart" align="right" src="https://cdn.iconscout.com/icon/free/png-256/shopping-cart-1403820-1187982.png" /></a>
+
+                </li>}
+
+                @if (User.IsInRole("Admin"))
+                {
+
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                    </li>
+                }
+                }
+                else
+                {
+
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                </li>
+                }
+
+            </ul>
