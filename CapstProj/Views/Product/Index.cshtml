@@ -9,6 +9,13 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<h4>
+    @using (Html.BeginForm("Index", "Product", FormMethod.Get))
+    {
+        <p>
+            @Html.TextBox("search") <button type="submit" class="w3-button  w3-round-xlarge" style="background-color:gray">Search</button>
+        </p>}
+</h4>
 <table class="table">
     <thead>
         <tr>
@@ -26,6 +33,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CategoryId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isactive)
             </th>
             <th></th>
         </tr>
@@ -49,8 +59,11 @@
                 @Html.DisplayFor(modelItem => item.CategoryId)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ID" style="color:black">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID" style="color:blue">Details</a> |
+                @Html.DisplayFor(modelItem => item.isactive)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID" style="color:black">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.ID" style="color:blue">Details</a>
                 <a asp-action="Delete" asp-route-id="@item.ID" style="color:red">Delete</a>
             </td>
         </tr>

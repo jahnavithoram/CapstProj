@@ -38,7 +38,7 @@
             <tr>
                 @foreach (var item in Model)
                 {
-                    @if (item.CategoryId == ViewBag.cat || ViewBag.cat == null)
+                    @if ((item.CategoryId == ViewBag.cat || ViewBag.cat == null)&& (item.isactive==true))
                     {
                         @if (c != 0 && c % 2 == 0)
                         {
@@ -49,7 +49,7 @@
                         }
                         <td align="center">
                             <div class="card">
-                                <img src="@Url.Content(item.ProductImagePath)" style="width:100%;height:100px">
+                                <a asp-route-id="@item.ID" asp-action="Details"><img src="@Url.Content(item.ProductImagePath)" style="width:100%;height:100px"></a>
                                 <div class="container">
                                     <h4><b>@Html.DisplayFor(modelItem => item.P_Name)</b></h4>
                                     <h4>@Html.DisplayFor(modelItem => item.Cost) /-</h4>
@@ -58,7 +58,7 @@
                                     {
 
                                         <button type="submit" class="w3-button  w3-round-xlarge" style="background-color:teal">Add to cart</button>
-                                        
+
 
 
                                     }

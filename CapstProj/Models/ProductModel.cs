@@ -16,6 +16,7 @@ namespace CapstProj.Models
         public string ProductImagePath { get; set; }
         public string CategoryId { get; set; }
        
+        public bool isactive { get; set; }
         
     }
 }

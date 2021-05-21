@@ -23,8 +23,14 @@ namespace CapstProj.Controllers
 
         // GET: Product
       
-        public async Task<IActionResult> Index()
-        {   
+        public async Task<IActionResult> Index(string search)
+        {
+            if (search != null)
+            {
+                return View(await _context.ProductModel.Where(m => m.P_Name.StartsWith(search)).ToListAsync());
+
+
+            }
             return View(await _context.ProductModel.ToListAsync());
         }
         [AllowAnonymousAttribute]
@@ -56,6 +62,7 @@ namespace CapstProj.Controllers
         }
 
         // GET: Product/Details/5
+        [AllowAnonymousAttribute]
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -84,7 +91,7 @@ namespace CapstProj.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,P_Name,Cost,Details,ProductImagePath,CategoryId")] ProductModel productModel)
+        public async Task<IActionResult> Create([Bind("ID,P_Name,Cost,Details,ProductImagePath,CategoryId,isactive")] ProductModel productModel)
         {
             if (ModelState.IsValid)
             {
@@ -116,7 +123,7 @@ namespace CapstProj.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("ID,P_Name,Cost,Details,ProductImagePath,CategoryId")] ProductModel productModel)
+        public async Task<IActionResult> Edit(string id, [Bind("ID,P_Name,Cost,Details,ProductImagePath,CategoryId,,isactive")] ProductModel productModel)
         {
             if (id != productModel.ID)
             {

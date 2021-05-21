@@ -1,4 +1,5 @@
 ﻿using CapstProj.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -8,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace CapstProj.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class RoleController : Controller
     {
+        
         RoleManager<IdentityRole> roleManager;
         //   UserManager<IdentityUser> userManager;
         private readonly ApplicationDbContext _context;
