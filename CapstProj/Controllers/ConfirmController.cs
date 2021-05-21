@@ -40,8 +40,8 @@ namespace CapstProj.Controllers
       public async Task<IActionResult> Create()
         {
             List < ConfirmModel > data= new List<ConfirmModel>();
-            string connectionString = "Server=tcp:phase4-jthoram.database.windows.net,1433;Database=Capstone;User ID=jthoram;Password=ThinkPad@66;Trusted_Connection=False;Encrypt=True;MultipleActiveResultSets=True;";
-  
+            string connectionString = ";Database=;User ID=;Password=;Trusted_Connection=False;Encrypt=True;MultipleActiveResultSets=True;";
+    //server id and password have been removed for git repo (security concerns)
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand("select * from [CartModel]", con);
